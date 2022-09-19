@@ -1,0 +1,20 @@
+#!/bin/bash
+
+GA=7
+AV_COILS=5
+AV=15
+
+
+# Optimization Parameter
+ITER=10
+INNER_ITER=250
+STEP_SIZE=0.95
+MIN_R1=0.001
+OS=1
+REDU_FAC=3
+LAMBDA=0.0015
+FA=6
+
+# Sequence Parameter
+TR=0.0041
+DELAY=0.0153

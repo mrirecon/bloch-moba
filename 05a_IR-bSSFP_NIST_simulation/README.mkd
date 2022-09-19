@@ -1,0 +1,8 @@
+All reconstruction can be run using `./run.sh`.
+
+For running all models and creating the final figure enter `./run_figs.sh`.
+
+You might want to specify the reconstruction parameters in `func/opts.sh`.
+
+To clean up the folder run `./clean_up.sh`.
+

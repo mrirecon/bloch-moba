@@ -1,0 +1,12 @@
+# Skip
+*.cfl
+*.hdr
+*.txt
+*.code-workspace
+*.log
+*/out*
+
+# Add anyway
+!*/vertices/*.cfl
+!*/vertices/*.hdr
+!05_IR-bSSFP_NIST/ref_values_nist.txt

@@ -1,0 +1,26 @@
+# Extraction and Slicing out of tubes skips noisy parts of the reco, which can not be reproducible
+
+# Hyp.Sec. inversion, single-spin, not used in paper
+
+results/t1_test1 0.005   CFL_NRMSE_EXTRACT 6 6 13
+
+results/t2_test1 0.005   CFL_NRMSE_SLICE 6 2
+results/t2_test1 0.005   CFL_NRMSE_SLICE 6 3
+
+# Hyp.Sec. inversion, Slice Profile
+
+results/t1_test2 0.005	CFL_NRMSE
+
+results/t2_test2 0.005   CFL_NRMSE_EXTRACT 6 0 13
+
+# Perfect inversion, single-spin
+
+results/t1_test3 0.005   CFL_NRMSE_EXTRACT 6 6 13
+
+results/t2_test3 0.005   CFL_NRMSE_SLICE 6 4
+
+# Perfect inversion, Slice Profile
+
+results/t1_test4 0.005	CFL_NRMSE
+
+results/t2_test4 0.01   CFL_NRMSE

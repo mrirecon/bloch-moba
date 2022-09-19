@@ -1,0 +1,7 @@
+irbssfp/sens_R1	0.0001	CFL_NRMSE
+irbssfp/grad_R1	0.0001	CFL_NRMSE
+irbssfp/sens_R2	0.0001	CFL_NRMSE
+irbssfp/grad_R2	0.0001	CFL_NRMSE
+irbssfp/sens_B1	0.0001	CFL_NRMSE
+irbssfp/grad_B1	0.0001	CFL_NRMSE
+

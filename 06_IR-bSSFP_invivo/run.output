@@ -1,0 +1,10 @@
+results/LL/t1_test	0.005	CFL_NRMSE
+
+results/Bloch_flash/t1_test	0.005	CFL_NRMSE
+
+results/Bloch_short/t1_test	0.005	CFL_NRMSE
+results/Bloch_short/t2_test	0.005	CFL_NRMSE
+
+results/Bloch_long/t1_test	0.005	CFL_NRMSE
+results/Bloch_long/t2_test	0.005	CFL_NRMSE
+

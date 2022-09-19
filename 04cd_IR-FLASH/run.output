@@ -1,0 +1,12 @@
+results/LL/t1test	0.005	CFL_NRMSE
+results/M0A/t1test	0.005	CFL_NRMSE
+results/Bloch/t1test	0.005	CFL_NRMSE
+results/Bloch/m0test	0.005	CFL_NRMSE
+results/Bloch/b1test	0.005	CFL_NRMSE
+results/Bloch/sensc	0.005	CFL_NRMSE
+results/Bloch_SP/t1test	0.005	CFL_NRMSE
+results/Bloch_SP/m0test	0.005	CFL_NRMSE
+results/Bloch_SP/b1test	0.005	CFL_NRMSE
+results/Bloch_SP/sensc	0.005	CFL_NRMSE
+results/rois	0.0001	CFL_NRMSE
+

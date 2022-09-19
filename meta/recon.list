@@ -1,0 +1,8 @@
+./02_sens_analysis/run.sh
+./03_stm_simulation/run.sh
+./04a_IR-FLASH_num_phantom/run.sh
+./04b_IR-FLASH_phantom/run.sh
+./04cd_IR-FLASH/run.sh
+./05a_IR-bSSFP_NIST_simulation/run.sh
+./05b_IR-bSSFP_NIST/run.sh
+./06_IR-bSSFP_invivo/run.sh

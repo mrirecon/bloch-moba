@@ -1,0 +1,3 @@
+All simulations run with `./run.sh`.
+
+To run the simulations AND create figures execute: `./run_figs.sh`.

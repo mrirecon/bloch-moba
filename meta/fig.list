@@ -1,0 +1,9 @@
+./00_gold_standard_nist/run_figs.sh
+./02_sens_analysis/run_figs.sh
+./03_stm_simulation/run_figs.sh
+./04a_IR-FLASH_num_phantom/run_figs.sh
+./04b_IR-FLASH_phantom/run_figs.sh
+./04cd_IR-FLASH/run_figs.sh
+./05a_IR-bSSFP_NIST_simulation/run_figs.sh
+./05b_IR-bSSFP_NIST/run_figs.sh
+./06_IR-bSSFP_invivo/run_figs.sh
