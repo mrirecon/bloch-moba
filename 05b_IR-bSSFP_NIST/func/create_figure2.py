@@ -290,7 +290,7 @@ if __name__ == "__main__":
 			if (1 == d):
 				ax3.text(mean[i], 0.01+diff[i], str(i+1), fontsize=FS, fontweight='bold', color=COLORS[i-1+removed_values_t1])
 
-		ax3.axhline(md, color='black', linestyle='--', linewidth = 4)
+		ax3.axhline(md, color=TCOLOR, linestyle='--', linewidth = 4)
 		ax3.axhline(md + 1.96*sd, color='gray', linestyle='--', linewidth = 4)
 		ax3.axhline(md - 1.96*sd, color='gray', linestyle='--', linewidth = 4)
 
@@ -318,7 +318,7 @@ if __name__ == "__main__":
 		if (2 == d):
 			ax3.set_title("$\\bf{Pulse~+~Slice}$", fontsize=FS+5, pad=20)
 			# ax3.set_yticklabels([])
-			ax3.text(0.7*np.max(mean), +0.01, 'mean', color='black', fontsize=FS)
+			ax3.text(0.7*np.max(mean), +0.01, 'mean', color=TCOLOR, fontsize=FS)
 			ax3.text(0.7*np.max(mean), 1.1*(md+1.96*sd), '1.96$\sigma$', color='gray', fontsize=FS)
 			ax3.text(0.7*np.max(mean), 0.9*(md-1.96*sd), '-1.96$\sigma$', color='gray', fontsize=FS)
 
@@ -362,7 +362,7 @@ if __name__ == "__main__":
 			# if (0 == d):
 			#         ax4.text(mean[i], diff[i], str(i+removed_values_t2), fontsize=FS-5, fontweight='bold', color=COLORS[i-1+removed_values_t2])
 
-		ax4.axhline(md, color='black', linestyle='--', linewidth = 4)
+		ax4.axhline(md, color=TCOLOR, linestyle='--', linewidth = 4)
 		ax4.axhline(md + 1.96*sd, color='gray', linestyle='--', linewidth = 4)
 		ax4.axhline(md - 1.96*sd, color='gray', linestyle='--', linewidth = 4)
 
@@ -387,7 +387,7 @@ if __name__ == "__main__":
 			# ax4.set_yticklabels([])
 		if (2 == d):
 			# ax4.set_yticklabels([])
-			ax4.text(0.7*np.max(mean), -0.005, 'mean', color='black', fontsize=FS)
+			ax4.text(0.7*np.max(mean), -0.005, 'mean', color=TCOLOR, fontsize=FS)
 			ax4.text(0.7*np.max(mean), 0.6*(md+1.96*sd), '1.96$\sigma$', color='gray', fontsize=FS)
 			ax4.text(0.7*np.max(mean), 0.92*(md-1.96*sd), '-1.96$\sigma$', color='gray', fontsize=FS)
 
