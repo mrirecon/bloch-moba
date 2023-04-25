@@ -77,7 +77,7 @@ bart extract 10 $((FRAMES-150)) $FRAMES _traj{,2}
 bart transpose 2 10 _traj{2,3}
 bart flip $(bart bitmask 2) _traj{3,4}
 
-bart traj -x $SAMPLES -y $SPOKES -s${GA} -c -G -t $FRAMES -D -r -q $(bart estdelay _traj4 data4) _traj5
+bart traj -x $SAMPLES -y $SPOKES -s${GA} -c -G -t $FRAMES -D -r -O -q $(bart estdelay _traj4 data4) _traj5
 
 bart scale -- 0.5 _traj5 traj
 

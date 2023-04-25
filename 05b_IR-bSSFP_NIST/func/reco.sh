@@ -28,8 +28,7 @@ DATA=$3
 if [ -z ${OPTS+x} ];
 then
         echo "${REL_PATH}/opts.sh is not actively set." >&2
-
-	OPTS=${REL_PATH}/opts.sh
+        exit 1
 fi
 
 source $OPTS
@@ -63,7 +62,7 @@ bart saxpy $(echo ${TR} $((AV/2)) | awk '{printf "%1.5f\n",$1*$2}') _one _TIs TI
 rm _TI{,s}.{cfl,hdr} _one.{cfl,hdr}
 
 
-B1MAP=b1map_smooth
+B1MAP=b1map
 
 ex=1
 
@@ -84,21 +83,28 @@ then
 
         if [[ "$SLICEPROFILE" == "1" ]];
         then
+
+                echo "Constant Inversion Efficiency + Slice Profile Simulation"
+
                 nice -5 bart moba --bloch --sim STM \
                 --img_dims $BR:$BR:1 \
                 --seq IR-BSSFP,TR=${TR},TE=${TE},FA=${FA},Trf=${RF_DUR},BWTP=${BWTP},pinv,ipl=0,ppl=${PREP_LEN},sl-grad=${SS_GRAD_STRENGTH},isp=$(echo $INV_LEN $INV_SPOILER | awk '{print $1+$2}'),av-spokes=${AV},slice-thickness=${SLICE_THICKNESS},nom-slice-thickness=${NOM_SLICE_THICKNESS},Nspins=${SLICE_PROFILE_SPINS} \
-                --other pinit=3:1:1:1,pscale=1:1:30:0,b1map=${B1MAP} --scale_data=5000. --scale_psf=1000. --normalize_scaling \
+                --other pinit=1:1:1:0,pscale=1:1:30:0,b1map=${B1MAP},b1-sobolev-a=440,b1-sobolev-b=22 --scale_data=5000. --scale_psf=1000. --normalize_scaling \
                 -i$ITER -C$INNER_ITER -s$STEP_SIZE -B$MIN_R1 -d4 -o$OS -R$REDU_FAC -j$LAMBDA -g -N \
+		--pusteps 4 --ratio 0.5 \
                 -t ${TRAJ} ${DATA} TI reco sens \
                 2>&1 | tee reco.log
 
                 ex=$?
         else
+                echo "Constant Inversion Efficiency"
+
                 nice -5 bart moba --bloch --sim STM \
                 --img_dims $BR:$BR:1 \
                 --seq IR-BSSFP,TR=${TR},TE=${TE},FA=${FA},Trf=${RF_DUR},BWTP=${BWTP},pinv,ipl=0,ppl=${PREP_LEN},sl-grad=${SS_GRAD_STRENGTH},isp=$(echo $INV_LEN $INV_SPOILER | awk '{print $1+$2}'),av-spokes=${AV},Nspins=${SLICE_PROFILE_SPINS} \
-                --other pinit=3:1:1:1,pscale=1:1:30:0,b1map=${B1MAP} --scale_data=5000. --scale_psf=1000. --normalize_scaling \
+                --other pinit=1:1:1:0,pscale=1:1:30:0,b1map=${B1MAP},b1-sobolev-a=440,b1-sobolev-b=22 --scale_data=5000. --scale_psf=1000. --normalize_scaling \
                 -i$ITER -C$INNER_ITER -s$STEP_SIZE -B$MIN_R1 -d4 -o$OS -R$REDU_FAC -j$LAMBDA -g -N \
+		--pusteps 4 --ratio 0.5 \
                 -t ${TRAJ} ${DATA} TI reco sens \
                 2>&1 | tee reco.log
 
@@ -111,21 +117,27 @@ else
 
         if [[ "$SLICEPROFILE" == "1" ]];
         then
+                echo "Hyper Secant Inversion Model + Slice Profile Simulation"
+
                 nice -5 bart moba --bloch --sim STM \
                 --img_dims $BR:$BR:1 \
                 --seq IR-BSSFP,TR=${TR},TE=${TE},FA=${FA},Trf=${RF_DUR},BWTP=${BWTP},ipl=${INV_LEN},ppl=${PREP_LEN},sl-grad=${SS_GRAD_STRENGTH},isp=${INV_SPOILER},av-spokes=${AV},slice-thickness=${SLICE_THICKNESS},nom-slice-thickness=${NOM_SLICE_THICKNESS},Nspins=${SLICE_PROFILE_SPINS} \
-		--other pinit=3:1:1:1,pscale=1:1:30:0,b1map=${B1MAP} --scale_data=5000. --scale_psf=1000. --normalize_scaling \
+		--other pinit=1:1:1:0,pscale=1:1:30:0,b1map=${B1MAP},b1-sobolev-a=440,b1-sobolev-b=22 --scale_data=5000. --scale_psf=1000. --normalize_scaling \
                 -i$ITER -C$INNER_ITER -s$STEP_SIZE -B$MIN_R1 -d4 -o$OS -R$REDU_FAC -j$LAMBDA -g -N \
+		--pusteps 4 --ratio 0.5 \
                 -t ${TRAJ} ${DATA} TI reco sens \
                 2>&1 | tee reco.log
 
                 ex=$?
         else
+                echo "Hyper Secant Inversion Model"
+
                 nice -5 bart moba --bloch --sim STM \
                 --img_dims $BR:$BR:1 \
                 --seq IR-BSSFP,TR=${TR},TE=${TE},FA=${FA},Trf=${RF_DUR},BWTP=${BWTP},ipl=${INV_LEN},ppl=${PREP_LEN},sl-grad=${SS_GRAD_STRENGTH},isp=${INV_SPOILER},av-spokes=${AV},Nspins=${SLICE_PROFILE_SPINS} \
-                --other pinit=3:1:1:1,pscale=1:1:30:0,b1map=${B1MAP} --scale_data=5000. --scale_psf=1000. --normalize_scaling \
+                --other pinit=1:1:1:0,pscale=1:1:30:0,b1map=${B1MAP},b1-sobolev-a=440,b1-sobolev-b=22 --scale_data=5000. --scale_psf=1000. --normalize_scaling \
                 -i$ITER -C$INNER_ITER -s$STEP_SIZE -B$MIN_R1 -d4 -o$OS -R$REDU_FAC -j$LAMBDA -g -N \
+		--pusteps 4 --ratio 0.5 \
                 -t ${TRAJ} ${DATA} TI reco sens \
                 2>&1 | tee reco.log
 

@@ -19,14 +19,15 @@ export MODEL=$1
 # Load required parameters
 source func/opts.sh
 
-# Load SS IR FLASH data
-./data/load_data.sh
+# Load SS IR FLASH data path
+source ../utils/data_loc.sh
+KSP_PATH="${DATA_LOC}"/phantom/pha-ss
 
 # Prepare kspace data for reconstruction
-./func/prepare_data.sh ksp
+./func/prepare_data.sh ${KSP_PATH}
 
 # Run reconstrution
-./func/reco.sh ksp traj data
+./func/reco.sh ${KSP_PATH} traj data
 
 # Postprocess data
 ./func/post_process.sh mask/mask

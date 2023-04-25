@@ -6,3 +6,7 @@
 ./05a_IR-bSSFP_NIST_simulation/run.sh
 ./05b_IR-bSSFP_NIST/run.sh
 ./06_IR-bSSFP_invivo/run.sh
+./s01_stm_tol_influence/run.sh
+./s02_wav_regu_effect/run.sh
+./s03_multi_trf_analysis/run.sh
+./s04_input_coils/run.sh

@@ -11,6 +11,8 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 from mpl_toolkits.axes_grid1.inset_locator import (inset_axes, InsetPosition,
 						mark_inset)
 
+import imutils
+
 import sys
 import os
 sys.path.insert(0, os.path.join(os.environ['TOOLBOX_PATH'], 'python'))
@@ -36,6 +38,9 @@ VMIN = 0
 
 BCOLOR='white'  # Background color
 TCOLOR='black'  # Text color
+
+# Correction of phantom acquisition
+ANGLE = -28
 
 def perform_roi_analysis(paramap, roi):
 
@@ -157,7 +162,9 @@ if __name__ == "__main__":
 
 	# Layer with image
 
-	bloch_t1_m = np.ma.masked_equal(bloch_t1[:,:,1], 0)     # Take HypSec with SP reco
+	bloch_rot = imutils.rotate(bloch_t1[:,:,0], angle=ANGLE)
+
+	bloch_t1_m = np.ma.masked_equal(bloch_rot, 0)     # Take HypSec with SP reco
 
 	im = ax1.imshow(bloch_t1_m, origin='lower', cmap=my_cmap, vmax=VMAXT1, vmin=VMIN)
 
@@ -166,7 +173,10 @@ if __name__ == "__main__":
 
 		# Single color for ROI
 		cmap_roi = colors.ListedColormap(WBC)
-		roi_tmp = np.ma.masked_equal(rois[i], 0)
+
+		roi_rot = imutils.rotate(rois[i], angle=ANGLE)
+
+		roi_tmp = np.ma.masked_equal(roi_rot, 0)
 
 		# Plot ROI as overlay
 		im = ax1.imshow(roi_tmp, origin='lower', cmap=cmap_roi, alpha=0.6)
@@ -226,7 +236,9 @@ if __name__ == "__main__":
 	my_cmap2 = copy.copy(cm.get_cmap('turbo'))
 	my_cmap2.set_bad(BCOLOR)
 
-	bloch_t2_m = np.ma.masked_equal(bloch_t2[:,:,1], 0)     # Take HypSec with SP reco
+	bloch2_rot = imutils.rotate(bloch_t2[:,:,0], angle=ANGLE)
+
+	bloch_t2_m = np.ma.masked_equal(bloch2_rot, 0)     # Take HypSec with SP reco
 
 	im = ax2.imshow(bloch_t2_m, origin='lower', cmap=my_cmap2, vmax=VMAXT2, vmin=VMIN)
 
@@ -255,7 +267,7 @@ if __name__ == "__main__":
 	fig.add_subplot(ax2)
 
 
-	ind_list = [2, 3, 1]
+	ind_list = [1, 2, 0]
 
 	right = gridspec.GridSpecFromSubplotSpec(2, 3,
 			subplot_spec=outer[1], wspace=0.4, hspace=0.3)

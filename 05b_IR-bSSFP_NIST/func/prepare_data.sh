@@ -30,8 +30,7 @@ echo $OPTS
 if [ -z ${OPTS+x} ];
 then
         echo "${REL_PATH}/opts.sh is not actively set." >&2
-
-	OPTS=${REL_PATH}/opts.sh
+	exit 1
 fi
 
 source $OPTS
@@ -62,7 +61,7 @@ rm _tmp.{cfl,hdr} _kspcc.{cfl,hdr}
 #------------------ Trajectory -----------------
 #----------------------------------------------- 
 
-bart traj -x $SAMPLES -y $SPOKES -s${GA} -c -G -t $FRAMES -D -r _traj
+bart traj -x $SAMPLES -y $SPOKES -s${GA} -G -t $FRAMES -D -r _traj
 
 # Perform Gradient delay correction on timesteps in steady-state
 ## 1. Extract 150 spokes from steady state to estimate graident delays
@@ -76,7 +75,7 @@ bart extract 10 $((FRAMES-150)) $FRAMES _traj{,2}
 bart transpose 2 10 _traj{2,3}
 bart flip $(bart bitmask 2) _traj{3,4}
 
-bart traj -x $SAMPLES -y $SPOKES -s${GA} -c -G -t $FRAMES -D -r -q $(bart estdelay _traj4 data4) _traj5
+bart traj -x $SAMPLES -y $SPOKES -s${GA} -G -t $FRAMES -D -r -O -q $(bart estdelay -R _traj4 data4) _traj5
 
 bart scale -- 0.5 _traj5 traj
 

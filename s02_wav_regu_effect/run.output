@@ -1,0 +1,8 @@
+results/M0A_1/t1map		0.03	CFL_NRMSE
+results/Bloch_0.0001/t1_test	0.03	CFL_NRMSE
+results/Bloch_0.001/t1_test	0.03	CFL_NRMSE
+results/Bloch_0.01/t1_test	0.03	CFL_NRMSE
+results/Bloch_0.1/t1_test	0.03	CFL_NRMSE
+results/Bloch_0.25/t1_test	0.03	CFL_NRMSE
+results/Bloch_0.5/t1_test	0.03	CFL_NRMSE
+results/Bloch_1/t1_test		0.03	CFL_NRMSE

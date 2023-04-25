@@ -9,4 +9,8 @@
 # Add anyway
 !*/vertices/*.cfl
 !*/vertices/*.hdr
+!00_gold_standard_nist/ref_values_nist.txt
 !05_IR-bSSFP_NIST/ref_values_nist.txt
+!06_IR-bSSFP_invivo/tables.txt
+!s03_multi_trf_analysis/tables.txt
+!data/md5sum.txt

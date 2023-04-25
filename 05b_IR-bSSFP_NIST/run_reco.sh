@@ -12,9 +12,6 @@ fi
 
 export PATH=$TOOLBOX_PATH:$PATH
 
-# Load B1 map
-./b1map/load_b1map.sh
-
 # Load required parameters
 if [ $# -le 1 ]
 then
@@ -26,14 +23,19 @@ fi
 source $OPTS
 
 
-# Load SS IR bSSFP data
-./data/load_data.sh
+# Load data path
+source ../utils/data_loc.sh
+B1_PATH="${DATA_LOC}"/data_05b_b1map
+KSP_PATH="${DATA_LOC}"/data_05b_kspace
+
+# Load B1 map
+./b1map/load_b1map.sh "${B1_PATH}"
 
 # Prepare kspace data for reconstruction
-./func/prepare_data.sh ksp
+./func/prepare_data.sh "${KSP_PATH}"
 
 # Run reconstrution
-./func/reco.sh ksp traj data
+./func/reco.sh "${KSP_PATH}" traj data
 
 # Postprocess data
 ./func/post_process.sh

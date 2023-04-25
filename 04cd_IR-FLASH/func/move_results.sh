@@ -39,8 +39,6 @@ OUTDIR=out/out_${MODEL}
 
 [ ! -d $OUTDIR ] && mkdir -p $OUTDIR
 
-# rm current_*.{cfl,hdr} || true
-
 # Save additional files (not reqired for paper)
 if true;
 then

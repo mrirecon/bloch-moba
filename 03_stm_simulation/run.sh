@@ -7,3 +7,6 @@
 
 ## Run speed simulation
 ./speed_comparison.sh
+
+# For Testing
+./txt2cfl.py slice.txt slice

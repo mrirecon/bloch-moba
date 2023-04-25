@@ -29,7 +29,7 @@ DARK = 0
 
 # Define max values
 VMAXT1 = 3.1
-VMAXT2 = 1.1
+VMAXT2 = 0.75
 
 VMIN = 0
 
@@ -152,7 +152,7 @@ if __name__ == "__main__":
 
         bloch_t1_m = np.ma.masked_equal(bloch_t1[:,:,2], 0)     # Take HypSec with SP reco
 
-        im = ax1.imshow(bloch_t1_m, origin='lower', cmap=my_cmap, vmax=VMAXT1, vmin=VMIN)
+        im = ax1.imshow(bloch_t1_m, cmap=my_cmap, vmax=VMAXT1, vmin=VMIN)
 
         # Add Layer with ROIs
         for i in range(1, np.shape(rois)[2]):
@@ -162,7 +162,7 @@ if __name__ == "__main__":
                 roi_tmp = np.ma.masked_equal(rois[:,:,i], 0)
                 
                 # Plot ROI as overlay
-                im = ax1.imshow(roi_tmp, origin='lower', cmap=cmap_roi, alpha=0.6)
+                im = ax1.imshow(roi_tmp, cmap=cmap_roi, alpha=0.6)
 
                 # Add arrow pointing to ROI
                 ybase = np.max(np.where(1 == roi_tmp)[0])
@@ -170,7 +170,7 @@ if __name__ == "__main__":
                 ax1.text(xbase, ybase+1, str(i), fontsize=FS, fontweight='bold', color='black')
 
         # Recreate Colorbar from image
-        im = ax1.imshow(bloch_t1_m, origin='lower', visible=False, cmap=my_cmap, vmax=VMAXT1, vmin=VMIN)
+        im = ax1.imshow(bloch_t1_m, visible=False, cmap=my_cmap, vmax=VMAXT1, vmin=VMIN)
 
         # Small legend indicating ROIs
         ax1.text(0.25*np.shape(roi_tmp)[0], 0.1*np.shape(roi_tmp)[1], '\u2B24 ROIs',
@@ -204,8 +204,8 @@ if __name__ == "__main__":
                 ax1.spines[axis].set_linewidth(2)
 
         # Figure label "A"
-        ax1.text(-0.3*np.shape(bloch_t1_m)[0], 1.1*np.shape(bloch_t1_m)[0], 'A', fontsize=FS+14, fontweight='bold', color=TCOLOR)
-        ax1.text(-0.15*np.shape(bloch_t1_m)[0], 1.1*np.shape(bloch_t1_m)[0], "$\\bf{Simulated~Data}$", fontsize=FS+2, fontweight='bold', color=TCOLOR)
+        ax1.text(-0.3*np.shape(bloch_t1_m)[0], -0.1*np.shape(bloch_t1_m)[0], 'A', fontsize=FS+14, fontweight='bold', color=TCOLOR)
+        ax1.text(-0.15*np.shape(bloch_t1_m)[0], -0.1*np.shape(bloch_t1_m)[0], "$\\bf{Simulated~Data}$", fontsize=FS+2, fontweight='bold', color=TCOLOR)
 
 
         fig.add_subplot(ax1)
@@ -221,7 +221,7 @@ if __name__ == "__main__":
 
         bloch_t2_m = np.ma.masked_equal(bloch_t2[:,:,2], 0)     # Take HypSec with SP reco
 
-        im = ax2.imshow(bloch_t2_m, origin='lower', cmap=my_cmap2, vmax=VMAXT2, vmin=VMIN)
+        im = ax2.imshow(np.flip(bloch_t2_m, axis=0), origin='lower', cmap=my_cmap2, vmax=VMAXT2, vmin=VMIN)
 
         # Ensure same scaling as map with colorbar has
         divider = make_axes_locatable(ax2)
@@ -402,9 +402,6 @@ if __name__ == "__main__":
         # Manually set the position and relative size of the inset axes within ax1
         ip2 = InsetPosition(ax7, [0.55,0.2,0.4,0.3]) # xmin, xmax, ymin, ymax
         ax8.set_axes_locator(ip2)
-
-        # Mark the region corresponding to the inset axes on ax1 and draw lines in grey linking the two axes.
-        # mark_inset(ax7, ax8, loc1=3, loc2=4, fc="none", ec='0.9')
         
         for i in range(1,len(t1[ind])):
                 ax8.errorbar(reft2[i], t2[ind][i], yerr=t2_std[ind][i], fmt='*', markersize= MS, color=COLORS[i-1], label='ROI: '+str(i))
@@ -502,9 +499,6 @@ if __name__ == "__main__":
         ip3 = InsetPosition(ax10, [0.55,0.2,0.4,0.3]) # xmin, xmax, ymin, ymax
         ax11.set_axes_locator(ip3)
 
-        # Mark the region corresponding to the inset axes on ax1 and draw lines in grey linking the two axes.
-        # mark_inset(ax10, ax11, loc1=3, loc2=4, fc="none", ec='0.9')
-        
         for i in range(1,len(t1[ind])):
                 ax11.errorbar(reft2[i], t2[ind][i], yerr=t2_std[ind][i], fmt='*', markersize= MS, color=COLORS[i-1], label='ROI '+str(i))
 

@@ -84,13 +84,14 @@ LL)
         ;;
 
 M0A)
-        ITER=15
+        ITER=10
         LAMBDA=0.0025
 
-        nice -5 bart moba -P --seq TR=${TR} \
+        nice -5 bart moba -P --seq TR=${TR},FA=${FA} \
         --img_dims $BR:$BR:1 \
         -i$ITER -C$INNER_ITER -s$STEP_SIZE -B$MIN_R1 -d4 -o$OS -R$REDU_FAC -j$LAMBDA -g -N \
-        --other pinit=1:1:2:1 --scale_data=5000. --scale_psf=1000. --normalize_scaling \
+        --other pinit=1:1:0:1,pscale=1:1:0.2:1,b1-sobolev-a=44,b1-sobolev-b=22 \
+	--scale_data=5000. --scale_psf=1000. --normalize_scaling \
         -t ${TRAJ} ${DATA} TI reco sens \
         2>&1 | tee reco.log
 
@@ -101,7 +102,6 @@ Bloch)
         RF_DUR=0.001
         INV_LEN=0
         PREP_LEN=0
-        INV_EFF=1
         INV_SPOILER=0
         BWTP=4
         TE=0.00184
@@ -116,7 +116,8 @@ Bloch)
         nice -5 bart moba --bloch --sim STM \
         --img_dims $BR:$BR:1 \
 	--seq IR-FLASH,TR=${TR},TE=${TE},FA=${FA},Trf=${RF_DUR},BWTP=${BWTP},pinv,ipl=${INV_LEN},ppl=${PREP_LEN},isp=${INV_SPOILER},av-spokes=${AV} \
-        --other pinit=3:1:1:1,pscale=1:1:1:0.1 --scale_data=5000. --scale_psf=1000. --normalize_scaling \
+        --other pinit=1:1:1:0,pscale=1:1:1:0.1,b1-sobolev-a=44,b1-sobolev-b=22 \
+	--scale_data=5000. --scale_psf=1000. --normalize_scaling \
         -i$ITER -C$INNER_ITER -s$STEP_SIZE -B$MIN_R1 -d4 -o$OS -R$REDU_FAC -j$LAMBDA -g -N \
         -t ${TRAJ} ${DATA} TI reco sens \
         2>&1 | tee reco.log

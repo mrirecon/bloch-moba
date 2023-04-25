@@ -7,7 +7,7 @@ mkdir tmp
 
 # Download datasets
 
-ZENODO="https://zenodo.org/record/6992763/files"
+ZENODO="https://zenodo.org/record/7654462/files"
 
 FILES=(data_GSM_t1 data_GSM_t2)
 OUT=(tmp/dataTI tmp/dataTE)

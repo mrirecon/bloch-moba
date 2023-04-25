@@ -90,10 +90,6 @@ class mapping(object):
 
         
         self.oridata = np.array(cfl.readcfl(self.infile).squeeze()) #dim = [x, y, time, slice]
-        
-#        a = np.mean(self.oridata)
-#        
-#        self.oridata = self.oridata/a
 
         self.map = self.getmap(np.abs(self.oridata))
      

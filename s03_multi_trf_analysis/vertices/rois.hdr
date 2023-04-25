@@ -1,0 +1,8 @@
+# Dimensions
+256 256 4 1 1 1 1 1 1 1 1 1 1 1 1 1 
+# Command
+join 2 vertices/v000 vertices/v001 vertices/v002 vertices/v003 vertices/rois 
+# Files
+ <>vertices/rois <vertices/v003 <vertices/v002 <vertices/v001 <vertices/v000
+# Creator
+BART v0.8.00-208-gfa30be5

@@ -27,6 +27,8 @@ RESULTS=results/${MODEL}
 [ ! -d $RESULTS ] && mkdir -p $RESULTS
 
 cp t1map.{cfl,hdr} $RESULTS || true
+cp famap.{cfl,hdr} $RESULTS || true
+cp b1map.{cfl,hdr} $RESULTS || true
 
 # Directly to results
 cp rois.{cfl,hdr} results || :

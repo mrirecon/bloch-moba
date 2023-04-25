@@ -23,8 +23,7 @@ REL_PATH=$(dirname ${FULL_PATH})
 if [ -z ${OPTS+x} ];
 then
         echo "opts.sh is not actively set." >&2
-
-	OPTS=${REL_PATH}/opts.sh
+	exit 1
 fi
 
 source $OPTS
@@ -36,11 +35,13 @@ bart slice 6 1 {reco,_m0map}
 
 bart threshold -B 0.8 _m0map{,2}
 
-bart morphop -c 15 _m0map2 _mask
+bart morphop -c 21 _m0map2 _mask2
+bart morphop -o 21 _mask{2,}
+
 
 bart resize -c 0 $((SAMPLES/2)) 1 $((SAMPLES/2)) {_,}mask
 
-rm _mask.{cfl,hdr} _m0map{,2}.{cfl,hdr}
+rm _mask{,2}.{cfl,hdr} _m0map{,2}.{cfl,hdr}
 
 # Estimate correct parameter maps
 

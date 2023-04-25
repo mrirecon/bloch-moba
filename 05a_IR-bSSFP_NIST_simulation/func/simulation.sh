@@ -65,8 +65,11 @@ echo "SPOKES: ${SPOKES}"
 echo "REP: ${REP}"
 
 ## Relaxation parameters for NIST phantom
-T1=(3 2.48 2.173 1.907 1.604 1.332 1.044 0.802 0.609 0.458 0.337 0.244 0.177 0.127 0.091)
-T2=(1 0.581 0.404 0.278 0.191 0.133 0.097 0.064 0.046 0.032 0.023 0.016 0.011 0.008 0.006)
+## Estimated from single-echo spin-echo measurements
+## Last value in T2 was measured wrong: 735 ms. Thus it is replace
+## by the literature value of 6 ms
+T1=(3 2.965 2.224 1.934 1.582 1.529 1.047 0.839 0.630 0.455 0.310 0.327 0.196 0.139 0.116)
+T2=(1 1.450 0.388 0.271 0.183 0.175 0.098 0.071 0.049 0.033 0.023 0.018 0.018 0.026 0.006)
 
 FILE=ref_nist.txt
 [ -f $FILE ] && rm $FILE

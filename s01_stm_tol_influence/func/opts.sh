@@ -1,0 +1,27 @@
+#!/bin/bash
+
+GA=7
+AV_COILS=5
+AV=15
+
+# Optimization Parameter
+ITER=10
+INNER_ITER=250
+STEP_SIZE=0.95
+MIN_R1=0.001
+OS=1
+REDU_FAC=3
+LAMBDA=0.0015
+
+# Sequence Parameter
+TR=0.0041
+REP=1000
+RF_DUR=0.001
+INV_LEN=0.01
+INV_SPOILER=0.005
+PREP_LEN=0
+BWTP=4
+TE=0.00184
+FA=6
+
+DELAY=$(echo $INV_LEN $INV_SPOILER | awk '{printf "%f\n",$1+$2}')

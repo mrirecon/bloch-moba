@@ -40,7 +40,7 @@ Bloch_flash)
         PREP_LEN=0
         INV_SPOILER=0.005
         SLICE_PROFILE_SPINS=21
-        SS_GRAD_STRENGTH=0.012
+        SS_GRAD_STRENGTH=0.01879
         ;;
 
 Bloch_short)
@@ -53,7 +53,7 @@ Bloch_short)
         INV_LEN=0.01
         INV_SPOILER=0.005
         SLICE_PROFILE_SPINS=21
-        SS_GRAD_STRENGTH=0.012
+        SS_GRAD_STRENGTH=0.01879
         ;;
 
 Bloch_long)
@@ -66,6 +66,6 @@ Bloch_long)
         INV_LEN=0.01
         INV_SPOILER=0.005
         SLICE_PROFILE_SPINS=21
-        SS_GRAD_STRENGTH=0.012
+        SS_GRAD_STRENGTH=0.00752
         ;;
 esac

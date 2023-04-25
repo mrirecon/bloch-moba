@@ -1,0 +1,4 @@
+\begin{tabular}{c|c|c|c|c|c} & $T_{1,\text{IR FLASH}}$ [s] & $T_{1,\text{IR bSSFP, short}}$ [s] & $T_{1,\text{IR FLASH, long}}$ [s] & $T_{2,\text{IR bSSFP, short}}$ [s] & $T_{2,\text{IR bSSFP, long}}$ [s] \\\hline
+ \textbf{ROI 1} & 0.737$\pm$0.016&1.35$\pm$0.019&1.059$\pm$0.019&0.024$\pm$0.001&0.033$\pm$0.001\\
+ \textbf{ROI 2} & 1.738$\pm$0.302&2.434$\pm$0.413&2.227$\pm$0.444&0.066$\pm$0.02&0.096$\pm$0.088
+\end{tabular}

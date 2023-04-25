@@ -1,0 +1,12 @@
+results/Bloch_SP1E-2/t1_test	0.03	CFL_NRMSE
+results/Bloch_SP1E-3/t1_test	0.03	CFL_NRMSE
+results/Bloch_SP5E-3/t1_test	0.03	CFL_NRMSE
+results/Bloch_SP7E-3/t1_test	0.03	CFL_NRMSE
+results/Bloch_SP1E-6/t1_test	0.03	CFL_NRMSE
+results/Bloch1E-2/t1_test	0.03	CFL_NRMSE
+results/Bloch1E-3/t1_test	0.03	CFL_NRMSE
+results/Bloch5E-3/t1_test	0.03	CFL_NRMSE
+results/Bloch7E-3/t1_test	0.03	CFL_NRMSE
+results/Bloch1E-6/t1_test	0.03	CFL_NRMSE
+results/M0A/t1_test	0.03	CFL_NRMSE
+results/rois            0.0001    CFL_NRMSE

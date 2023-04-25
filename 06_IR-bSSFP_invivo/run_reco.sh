@@ -24,19 +24,11 @@ LL | Bloch_flash)
 	;;
 
 Bloch_short)
-
 	RAW=ksp_short
-
-	# Load B1 map
-	./b1map/load_b1map.sh mask/mask
 	;;
 
 Bloch_long)
-
 	RAW=ksp_long
-
-	# Load B1 map
-	./b1map/load_b1map.sh mask/mask
 	;;
 esac
 
@@ -46,6 +38,12 @@ source func/opts.sh
 
 # Load SS IR FLASH data
 ./data/load_data.sh
+
+# Load B1 map
+if [[ "$MODEL" == "Bloch_short" ]] || [[ "$MODEL" == "Bloch_long" ]];
+then
+	./b1map/load_b1map.sh mask/mask
+fi
 
 # Prepare kspace data for reconstruction
 ./func/prepare_data.sh ${RAW}

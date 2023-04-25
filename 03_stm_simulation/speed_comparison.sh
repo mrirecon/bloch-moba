@@ -43,6 +43,8 @@ T1=0.832
 T2=0.08
 M0=1
 NSPINS=101
+SLICE_THICKNESS=0.01
+G_SS=0.012
 
 # Create file for storing results of simulation
 
@@ -60,25 +62,49 @@ for i in $(seq 1 $STEP $((REPMAX+1)))
 do
         echo $i
 
+	# ODE
+
+	ODE_TOL=1E-6
+        t=$(nice -n 5 bart sim --ODE --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=${SLICE_THICKNESS},sl-grad=${G_SS},Nspins=${NSPINS} --other ode-tol=${ODE_TOL} --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 tmp/ode)
+        echo "0" $i $t $(component_analysis $((i-1)) tmp/ode) >> $FILE
+
+	ODE_TOL=1E-5
+        t=$(nice -n 5 bart sim --ODE --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=${SLICE_THICKNESS},sl-grad=${G_SS},Nspins=${NSPINS} --other ode-tol=${ODE_TOL} --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 tmp/ode1)
+        echo "1" $i $t $(component_analysis $((i-1)) tmp/ode1) >> $FILE
+
+	ODE_TOL=1E-4
+        t=$(nice -n 5 bart sim --ODE --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=${SLICE_THICKNESS},sl-grad=${G_SS},Nspins=${NSPINS} --other ode-tol=${ODE_TOL} --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 tmp/ode2)
+        echo "2" $i $t $(component_analysis $((i-1)) tmp/ode2) >> $FILE
+
+
         # STM
-        t=$(nice -n 5 bart sim --STM --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=0.001,Nspins=${NSPINS} --other ode-tol=10E-7 --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 tmp/modev)
-        echo "0" $i $t $(component_analysis $((i-1)) tmp/modev) >> $FILE
 
-        # ODE
-        t=$(nice -n 5 bart sim --ODE --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=0.001,Nspins=${NSPINS} --other ode-tol=10E-7 --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 tmp/odev)
-        echo "1" $i $t $(component_analysis $((i-1)) tmp/odev) >> $FILE
+	STM_TOL=1E-6
+        t=$(nice -n 5 bart sim --STM --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=${SLICE_THICKNESS},sl-grad=${G_SS},Nspins=${NSPINS} --other stm-tol=${STM_TOL} --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 tmp/stm)
+        echo "3" $i $t $(component_analysis $((i-1)) tmp/stm) >> $FILE
 
-        # ROT rate 10^4
-        t=$(nice -n 5 bart sim --ROT --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=0.001,Nspins=${NSPINS} --other ode-tol=10E-7 --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 --other sampling-rate=10E4 tmp/oder)
-        echo "2" $i $t $(component_analysis $((i-1)) tmp/oder) >> $FILE
+	STM_TOL=1E-5
+        t=$(nice -n 5 bart sim --STM --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=${SLICE_THICKNESS},sl-grad=${G_SS},Nspins=${NSPINS} --other stm-tol=${STM_TOL} --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 tmp/stm1)
+        echo "4" $i $t $(component_analysis $((i-1)) tmp/stm1) >> $FILE
 
-        # ROT rate 10^5
-        t=$(nice -n 5 bart sim --ROT --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=0.001,Nspins=${NSPINS} --other ode-tol=10E-7 --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 --other sampling-rate=10E5 tmp/oder2)
-        echo "3" $i $t $(component_analysis $((i-1)) tmp/oder2) >> $FILE
+	STM_TOL=1E-4
+        t=$(nice -n 5 bart sim --STM --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=${SLICE_THICKNESS},sl-grad=${G_SS},Nspins=${NSPINS} --other stm-tol=${STM_TOL} --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 tmp/stm2)
+        echo "5" $i $t $(component_analysis $((i-1)) tmp/stm2) >> $FILE
 
-        # ROT rate 10^6
-        t=$(nice -n 5 bart sim --ROT --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=0.001,Nspins=${NSPINS} --other ode-tol=10E-7 --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 --other sampling-rate=10E6 tmp/oder3)
-        echo "4" $i $t $(component_analysis $((i-1)) tmp/oder3) >> $FILE        
+
+        # ROT
+
+	SR=1E7
+        t=$(nice -n 5 bart sim --ROT --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=${SLICE_THICKNESS},sl-grad=${G_SS},Nspins=${NSPINS} --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 --other sampling-rate=${SR} tmp/rot)
+        echo "6" $i $t $(component_analysis $((i-1)) tmp/rot) >> $FILE
+
+        SR=1E6
+        t=$(nice -n 5 bart sim --ROT --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=${SLICE_THICKNESS},sl-grad=${G_SS},Nspins=${NSPINS} --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 --other sampling-rate=${SR} tmp/rot1)
+        echo "7" $i $t $(component_analysis $((i-1)) tmp/rot1) >> $FILE
+
+        SR=1E5
+        t=$(nice -n 5 bart sim --ROT --seq FLASH,TR=${TR},TE=${TE},Nrep=${i},pinv,ipl=${DINV},ppl=${DPREP},Trf=${RF_DUR},FA=${FA},BWTP=${BWTP},isp=${DINV},slice-thickness=${SLICE_THICKNESS},sl-grad=${G_SS},Nspins=${NSPINS} --split-dim -1 ${T1}:${T1}:1 -2 ${T2}:${T2}:1 --other sampling-rate=${SR} tmp/rot2)
+        echo "8" $i $t $(component_analysis $((i-1)) tmp/rot2) >> $FILE        
 done
 
 sed -i 's/i/j/g' $FILE #required for input to python script
