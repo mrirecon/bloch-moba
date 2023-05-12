@@ -49,3 +49,9 @@ If you want to reproduce **all** figures, run
 ## Feedback
 Please feel free to send us feedback about this scripts!
 We would be happy to learn how to improve this and future script publications.
+
+
+## License
+This work is licensed under a **Creative Commons Attribution 4.0 International License**.
+You should have received a copy of the license along with this
+work. If not, see <https://creativecommons.org/licenses/by/4.0/>.
