@@ -3,10 +3,10 @@
 ./04a_IR-FLASH_num_phantom/run.sh
 ./04b_IR-FLASH_phantom/run.sh
 ./04cd_IR-FLASH/run.sh
-./05a_IR-bSSFP_NIST_simulation/run.sh
-./05b_IR-bSSFP_NIST/run.sh
-./06_IR-bSSFP_invivo/run.sh
+./05a_IR-bSSFP_NIST_simulation/run.sh	::very-long::
+./05b_IR-bSSFP_NIST/run.sh	::very-long::
+./06_IR-bSSFP_invivo/run.sh	::very-long::
 ./s01_stm_tol_influence/run.sh
 ./s02_wav_regu_effect/run.sh
-./s03_multi_trf_analysis/run.sh
-./s04_input_coils/run.sh
+./s03_multi_trf_analysis/run.sh	::very-long::
+./s04_input_coils/run.sh	::very-long::
