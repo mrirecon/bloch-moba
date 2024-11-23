@@ -3,6 +3,8 @@
 set -euo pipefail
 set -x
 
+export BART_COMPAT_VERSION=v0.9.00
+
 # Set default to IR bSSFP
 MODEL="irbssfp"
 

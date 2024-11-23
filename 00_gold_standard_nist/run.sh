@@ -5,6 +5,8 @@ set -ex
 [ -d tmp ] &&  rm -rf tmp
 mkdir tmp
 
+export BART_COMPAT_VERSION=v0.9.00
+
 # Download datasets
 
 ZENODO="https://zenodo.org/record/7654462/files"

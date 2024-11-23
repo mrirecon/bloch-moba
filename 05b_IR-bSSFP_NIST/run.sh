@@ -2,6 +2,8 @@
 
 set -eux
 
+export BART_COMPAT_VERSION=v0.9.00
+
 # Perfect Inversion Model
 
 # without slice-profile model

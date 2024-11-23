@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export BART_COMPAT_VERSION=v0.9.00
+
 # Simulation
 
 ## Run slice-profile simulation

@@ -2,6 +2,8 @@
 
 set -eux
 
+export BART_COMPAT_VERSION=v0.9.00
+
 ./run_reco.sh SP_PI
 
 ./run_reco.sh NSP_PI

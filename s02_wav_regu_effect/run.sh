@@ -2,6 +2,8 @@
 
 set -e
 
+export BART_COMPAT_VERSION=v0.9.00
+
 # Run reconstructions
 [ ! -d results/LL_1 ] && ./run_reco.sh LL 1
 

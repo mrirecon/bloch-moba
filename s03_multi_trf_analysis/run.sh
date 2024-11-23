@@ -2,6 +2,8 @@
 
 set -e
 
+export BART_COMPAT_VERSION=v0.9.00
+
 # Run reconstructions
 MODELS=(LL Bloch_flash Bloch_2_5 Bloch_2_1 Bloch_1_6 Bloch_1_2 Bloch_0_6 Bloch_0_4)
 
