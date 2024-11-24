@@ -26,3 +26,4 @@ bart fmac results/M0A/t1map results/rois results/M0A/t1test
 bart fmac results/Bloch/t1map results/rois results/Bloch/t1test
 bart fmac results/Bloch/m0map results/rois results/Bloch/m0test
 bart fmac results/Bloch/b1map results/rois results/Bloch/b1test
+bart cabs results/Bloch/sensc results/Bloch/sensc_test # Test only absolute value, because phase can be arbitrary due to SVD in coil-compression
