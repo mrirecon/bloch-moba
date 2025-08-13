@@ -1,3 +1,8 @@
+**The main repository has moved to: https://gitlab.tugraz.at/ibi/mrirecon/papers/bloch-moba.git**
+
+**Please check there for updates.**
+
+
 # Quantitative Magnetic Resonance Imaging by Nonlinear Inversion of the Bloch Equations
 
 This repository includes the scripts to create the Figures for the study
